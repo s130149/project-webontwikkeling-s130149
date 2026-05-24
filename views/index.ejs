@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Movies</title>
+</head>
+<body>
+    <div id="container">
+        <main>
+            <%- include('partials/header') %>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="/?sort=title&direction=<%= currentSort === 'title' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Name</a>
+                        </th>
+
+                        <th>
+                            <a href="/?sort=releaseDate&direction=<%= currentSort === 'releaseDate' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Release date</a>
+                        </th>
+
+                        <th>
+                            <a href="/?sort=genre&direction=<%= currentSort === 'genre' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Genre</a>
+                        </th>
+
+                        <th>
+                            <a href="/?sort=actors&direction=<%= currentSort === 'actors' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Actors</a>
+                        </th>
+
+                        <th>
+                            <a href="/?sort=duration&direction=<%= currentSort === 'duration' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Duration</a>
+                        </th>
+
+                        <th>
+                            <a href="/?sort=isReleased&direction=<%= currentSort === 'isReleased' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Released</a>
+                        </th>
+
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% movies.forEach(movie => { %>
+                        <tr>
+                            <td class="movie-info">
+                                <span class="mobile-label">
+                                    <a href="/?sort=title&direction=<%= currentSort === 'title' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Name</a>
+                                </span>
+
+                                <div class="info-wrapper">
+                                    <img src="<%= movie.imageUrl %>" alt="<%= movie.title %> Poster" class="avatar">
+                                    <div>
+                                        <span class="movie-title"> <%= movie.title %> </span>
+                                        <span class="movie-director"> <%= movie.director.name %> </span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td> 
+                                <span class="mobile-label">
+                                    <a href="/?sort=releaseDate&direction=<%= currentSort === 'releaseDate' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Release date</a>
+                                </span>
+                                <%= movie.releaseDate %> 
+                            </td>
+
+                            <td> 
+                                <span class="mobile-label">
+                                    <a href="/?sort=genre&direction=<%= currentSort === 'genre' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Genre</a>
+                                </span>
+                                <%= movie.genre %> 
+                            </td>
+
+                            <td>
+                                <span class="mobile-label">
+                                    <a href="/?sort=actors&direction=<%= currentSort === 'actors' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Actors</a>
+                                </span>
+                                <div class="actors">
+                                    <% movie.actors.slice(0, 2).forEach(actor => { %>
+                                        <span><%= actor %></span>
+                                    <% }) %>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="mobile-label">
+                                    <a href="/?sort=duration&direction=<%= currentSort === 'duration' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Duration</a>
+                                </span>
+                                <%= movie.duration %> min
+                            </td>
+
+                            <td>
+                                <span class="mobile-label">
+                                    <a href="/?sort=isReleased&direction=<%= currentSort === 'isReleased' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Released</a>
+                                </span>
+                                <% if (movie.isReleased) { %>
+                                    <span class="isReleased true"></span>
+                                <% } else { %>
+                                    <span class="isReleased false"></span>
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <a href="/movie/<%= movie.id %>" class="view-link">View</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

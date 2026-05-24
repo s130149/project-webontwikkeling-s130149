@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Register</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-content card-edit card-login">
+                <h1 class="card-title">Register</h1>
+                
+                <form action="/login" method="POST">
+                    <div>
+                        <input type="text" id="username" name="username" placeholder="username" required>
+                    </div>
+
+                    <div>
+                        <input type="password" id="password" name="password" placeholder="password"  required>
+                    </div>
+
+                    <% if (locals.error) { %>
+                        <p><%= error %></p>
+                    <% } %>
+
+                    <div class="login-btn">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+                
+                <p>
+                    Already have an account? <a href="/login" class="cancel-link">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

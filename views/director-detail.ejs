@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>director details</title>
+</head>
+<body>
+
+    <div class="detail-container">
+        <a href="/" class="back-btn">Back </a>
+
+        <div class="card-container">
+            <div class="card-image-wrapper">
+                <img src="<%= director.imageUrl %>" alt="<%= director.name %>" class="card-image">
+            </div>
+
+            <div class="card-content">
+                <h1 class="card-title"><%= director.name %></h1>
+                <p class="card-description"><%= director.description %></p>
+
+                <div class="card-details">
+                    <p><strong>Age:</strong> <%= director.age %></p>
+                    <p><strong>Birthdate:</strong> <%= director.birthDate %></p>
+                    <p><strong>Is Active:</strong> <%= director.isActive ? 'Yes' : 'No' %></p>
+                    <p><strong>Birth Date:</strong> <%= director.birthDate %></p> 
+                    <p><strong>Nationality:</strong> <%= director.nationality %></p>
+                    <p><strong>Awards:</strong> <%= director.awards %></p>
+
+                    <div class="known-for-row">
+                        <strong>Known for:</strong> 
+                        <div class="known-for-list">
+                            <% knownMovies.forEach((movie, index) => { %>
+                                <% if (movie.id) { %>
+                                    <a href="/movie/<%= movie.id %>">
+                                        <%= movie.title %>
+                                    </a>
+                                <% } else { %>
+                                    <span><%= movie.title %></span>
+                                <% } %>
+                                
+                                <% if (index < knownMovies.length - 1) { %>, <% } %>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

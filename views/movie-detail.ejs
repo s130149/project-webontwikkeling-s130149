@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Movie details</title>
+</head>
+<body>
+
+    <div class="detail-container">
+        <a href="/" class="back-btn">Back </a>
+
+        <div class="card-container">
+            <div class="card-image-wrapper">
+                <img src="<%= movie.imageUrl %>" alt="<%= movie.title %> Poster" class="card-image">
+            </div>
+
+            <div class="card-content">
+                <h1 class="card-title"><%= movie.title %></h1>
+                <p class="card-description"><%= movie.description %></p>
+
+                <div class="card-details">
+                    <p><strong>Duration:</strong> <%= movie.duration %> min</p>
+                    <p><strong>Released:</strong> <%= movie.isReleased ? 'Yes' : 'No' %></p>
+                    <p><strong>Birth Date:</strong> <%= movie.releaseDate %></p> <p><strong>Genre:</strong> <%= movie.genre %></p>
+
+                    <div class="actors-row">
+                        <strong>Actors:</strong> 
+                        <div class="actors-list"><%= movie.actors.join(', ') %></div>
+                    </div>
+                    
+                    <div class="director-info">
+                        <p>
+                            <strong>Director:</strong> 
+                            <a href="/director/<%= movie.director.id %>"><%= movie.director.name %></a>
+                        </p>
+                    </div>
+                    <% if (user && user.role === 'ADMIN') { %>
+                        <div class="edit-btn-container">
+                            <a href="/movie/<%= movie.id %>/edit" class="btn-edit">Edit</a>
+                        </div>
+                    <% } %>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

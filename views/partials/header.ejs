@@ -1,0 +1,19 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= page === 'movies' ? 'active' : '' %>">Movies</a></li>
+            <li><a href="/directors" class="<%= page === 'directors' ? 'active' : '' %>">Directors</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="search-container">
+        <form action="" method="GET">
+            <input 
+                type="text" placeholder="Search for movies..."
+                name="search"
+                value="<%= typeof searchInput !== 'undefined' ? searchInput : '' %>"
+            >
+        </form>
+    </div>
+</header>

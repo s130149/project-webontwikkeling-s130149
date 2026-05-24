@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Directors</title>
+</head>
+<body>
+    <div id="container">
+        <main>
+            <%- include('partials/header') %>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="/directors?sort=name&direction=<%= currentSort === 'name' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Name</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=age&direction=<%= currentSort === 'age' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Age</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=birthDate&direction=<%= currentSort === 'birthDate' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Birthdate</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=knownFor&direction=<%= currentSort === 'knownFor' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Known for</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=nationality&direction=<%= currentSort === 'nationality' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Nationality</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=awards&direction=<%= currentSort === 'awards' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Awards</a>
+                        </th>
+
+                        <th>
+                            <a href="/directors?sort=isActive&direction=<%= currentSort === 'isActive' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Active</a>
+                        </th>
+
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% directors.forEach(director => { %>
+                        <tr>
+                            <td class="director-info">
+                                <span class="mobile-label">
+                                    <a href="/?sort=title&direction=<%= currentSort === 'title' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Name</a>
+                                </span>
+
+                                <div class="info-wrapper">
+                                    <img src="<%= director.imageUrl %>" alt="<%= director.name %> Poster" class="avatar">
+                                    <div>
+                                        <span class="director-name"> <%= director.name %> </span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td> 
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=age&direction=<%= currentSort === 'age' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Age</a>
+                                </span>
+                                <%= director.age %> 
+                                </td>
+
+                            <td> 
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=birthDate&direction=<%= currentSort === 'birthDate' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Birthdate</a>
+                                </span>
+                                <%= director.birthDate %> 
+                            </td>
+
+                            <td>
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=knownFor&direction=<%= currentSort === 'knownFor' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Known for</a>
+                                </span>
+
+                                <div class="known-for">
+                                    <% director.knownFor.slice(0, 2).forEach(movie => { %>
+                                        <span><%= movie %></span>
+                                    <% }) %>
+                                </div>
+                            </td>
+
+                            <td> 
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=nationality&direction=<%= currentSort === 'nationality' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Nationality</a>
+                                </span>
+                                <%= director.nationality %> 
+                            </td>
+
+                             <td> 
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=awards&direction=<%= currentSort === 'awards' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Awards</a>
+                                </span>
+                                <%= director.awards %> 
+                            </td>
+
+                            <td>
+                                <span class="mobile-label">
+                                    <a href="/directors?sort=isActive&direction=<%= currentSort === 'isActive' && currentDirection === 'asc' ? 'desc' : 'asc' %>&search=<%= searchInput %>">Active</a>
+                                </span>
+
+                                <% if (director.isActive) { %>
+                                    <span class="isActive true"></span>
+                                <% } else { %>
+                                    <span class="isActive false"></span>
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <a href="/director/<%= director.id %>" class="view-link">View</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

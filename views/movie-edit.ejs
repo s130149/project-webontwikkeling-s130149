@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title>Edit movie</title>
+</head>
+<body>
+    <div class="detail-container">
+        <a href="/movie/<%= movie.id %>" class="back-btn">Back </a>
+
+        <div class="card-container">
+            <div class="card-image-wrapper">
+                <img src="<%= movie.imageUrl %>" alt="<%= movie.title %> Poster" class="card-image">
+            </div>
+            
+            <div class="card-content">
+                <h1 class="card-title">Edit</h1>
+
+                <div class="card-details card-edit">
+                    <form action="/movie/<%= movie.id %>/edit" method="POST">
+                        <div class="form-row">
+                            <label for="title">Title: </label>
+                            <input type="text" id="title" name="title" value="<%= movie.title %>" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="genre">Genre:</label>
+                            <input type="text" id="genre" name="genre" value="<%= movie.genre %>" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="duration">Duration (in minutes):</label>
+                            <input type="number" id="duration" name="duration" value="<%= parseInt(movie.duration) %>" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="released">Is Released:</label>
+                            <select id="released" name="isReleased">
+                                <option value="true" <%= movie.isReleased === true || movie.isReleased === "true" ? 'selected' : '' %>>Yes</option>
+                                <option value="false" <%= movie.isReleased === false || movie.isReleased === "false" ? 'selected' : '' %>>No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="save-btn-container">
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>      
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
